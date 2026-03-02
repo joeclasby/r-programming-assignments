@@ -1,0 +1,55 @@
+#----Assignment----
+data("mtcars")
+
+head(mtcars, 6)
+str(mtcars)
+
+summary(mtcars)
+print(mtcars[1:3, 1:6])
+plot(mtcars$wt, mtcars$mpg)
+
+class(mtcars)
+isS4(mtcars)
+methods(class = "data.frame")[1:10] 
+
+
+# ----S3 EXAMPLE---- 
+
+student_s3 <- list(name = "Joe", age = 20, gpa = 3.6)
+class(student_s3) <- "student_s3"
+
+intro <- function(x) UseMethod("intro")
+
+intro.student_s3 <- function(x) {
+  paste0("Hi, I'm ", x$name, ", age ", x$age, ", GPA ", x$gpa, ".")
+}
+
+# Test
+class(student_s3)
+isS4(student_s3)
+intro(student_s3)
+
+# ----S4 EXAMPLE----
+
+setClass(
+  "student_s4",
+  slots = list(
+    name = "character",
+    age  = "numeric",
+    gpa  = "numeric"
+  )
+)
+
+student_s4 <- new("student_s4", name = "Joe", age = 20, gpa = 3.6)
+
+setGeneric("introS4", function(x) standardGeneric("introS4"))
+
+setMethod("introS4", "student_s4", function(x) {
+  paste0("Hi, I'm ", x@name, ", age ", x@age, ", GPA ", x@gpa, ".")
+})
+
+# Test
+class(student_s4)
+isS4(student_s4)
+slotNames(student_s4)
+introS4(student_s4)
