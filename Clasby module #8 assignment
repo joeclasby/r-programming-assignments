@@ -1,0 +1,36 @@
+#install.packages("plyr") 
+#library(plyr)
+
+# Step 1
+students <- read.table(
+  file.choose(),
+  header = TRUE,
+  sep = ",",
+  stringsAsFactors = FALSE
+)
+
+students_gendered_mean <- ddply(
+  students,
+  "Sex",
+  summarize,
+  Grade_Average = mean(Grade)
+)
+
+students_gendered_mean
+
+write.table(
+  students_gendered_mean,
+  "Students_Gendered_Mean.txt",
+  row.names = FALSE
+)
+
+# Step 2
+i_students <- subset(students, grepl("i", Name, ignore.case = TRUE))
+
+i_names <- data.frame(Name = i_students$Name)
+
+write.csv(i_names, "Names_With_I.csv", row.names = FALSE)
+
+# Step 3
+
+write.csv(i_students, "Students_With_I_Full.csv", row.names = FALSE)
