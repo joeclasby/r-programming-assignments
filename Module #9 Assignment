@@ -1,0 +1,14 @@
+#library(ggplot2)
+
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+ggplot(mtcars, aes(x = wt, y = mpg, color = cyl, size = hp)) +
+  geom_point(alpha = 0.8) +
+  labs(
+    title = "Fuel Efficiency by Weight, Cylinders, and Horsepower",
+    x = "Weight (1000 lbs)",
+    y = "Miles Per Gallon",
+    color = "Cylinders",
+    size = "Horsepower"
+  ) +
+  theme_minimal() 
