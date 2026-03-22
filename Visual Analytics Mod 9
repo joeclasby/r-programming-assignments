@@ -1,0 +1,39 @@
+# Load dataset
+data("iris")
+head(iris)
+
+# 1. Base R
+# Histogram: Petal Length
+hist(
+  iris$Petal.Length,
+  main = "Base R: Distribution of Petal Length",
+  xlab = "Petal Length",
+  col = "lightblue",
+  border = "white"
+)
+
+# 2. Lattice
+#library(lattice)
+
+# Box-whisker plot
+bwplot(
+  Petal.Length ~ Species,
+  data = iris,
+  main = "Lattice: Petal Length by Species",
+  xlab = "Species",
+  ylab = "Petal Length",
+  col = "purple"
+)
+
+# 3. ggplot2
+#library(ggplot2)
+
+# histogram 
+ggplot(iris, aes(x = Petal.Length)) +
+  geom_histogram(binwidth = 0.3, fill = "skyblue", color = "black") +
+  facet_wrap(~ Species) +
+  labs(
+    title = "ggplot2: Petal Length Distribution by Species",
+    x = "Petal Length",
+    y = "Count"
+  ) 
