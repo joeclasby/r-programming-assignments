@@ -1,0 +1,31 @@
+
+x <- 1967:1977
+y <- c(0.5, 1.8, 4.6, 5.3, 5.3, 5.7, 5.4, 5.0, 5.5, 5.6, 5.0)
+
+par(mar = c(5, 6, 4, 4)) 
+
+plot(y ~ x,
+     xaxt = "n",
+     yaxt = "n",
+     xaxs = "i",
+     xlab = "",
+     ylab = "",
+     pch = 16,
+     type = "b",
+     xlim = c(1967, 1977.5))
+
+axis(1, at = x, labels = x, tick = FALSE, family = "serif")
+axis(2,
+     at = seq(1, 6, 1),
+     labels = c("$300", "$320", "$340", "$360", "$380", ""),
+     tick = FALSE,
+     las = 2,
+     family = "serif")
+
+abline(h = 5, lty = 2)
+
+text(1977.3, 5.05, "5%", family = "serif")
+text(1977.3, 1.8,
+     "Per capita\nbudget expenditures\nin constant dollars",
+     adj = 1,
+     family = "serif")
