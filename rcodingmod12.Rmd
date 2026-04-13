@@ -1,0 +1,61 @@
+---
+title: "My R Markdown Primer"
+author: "Joe Clasby"
+date: "April 12, 2026"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Introduction
+
+R Markdown is a tool that lets you combine regular writing, R code, and
+output in one document. It is useful because you can explain your work,
+run your analysis, and show results all in the same place. This makes
+projects easier to organize and helps support reproducible analysis.
+
+This document shows how narrative text, math expressions, and code
+chunks can all work together. Instead of writing a separate report after
+doing the analysis, R Markdown allows the report and the analysis to
+stay connected.
+
+# Markdown Paragraph
+
+One thing I noticed about R Markdown is that it feels more efficient
+than writing a plain report by itself. I can type explanations in normal
+paragraph form, then immediately add code underneath to back up what I
+am saying. That makes the document feel more organized and more honest,
+because the results are coming directly from the code rather than being
+copied over manually.
+
+# LaTeX Math
+
+Here is an inline math example: $\alpha + \beta = \gamma$
+
+Here is a displayed equation:
+
+$$
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+$$
+
+```{r}
+library(ggplot2)
+data(mtcars)
+
+head(mtcars)
+```
+
+```{r}
+summary(mtcars)
+```
+
+```{r}
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(
+    title = "Car Weight vs Miles Per Gallon",
+    x = "Weight",
+    y = "Miles Per Gallon"
+  )
+```
